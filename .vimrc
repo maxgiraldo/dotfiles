@@ -1,3 +1,11 @@
+" Getting started
+"
+" Manual installation step
+" brew install fzf && $(brew --prefix)/opt/fzf/install
+" brew install the_silver_searcher
+" Manual steps:
+" :GoInstallBinaries
+"
 scriptencoding utf-8
 syntax on
 filetype plugin indent on
@@ -20,61 +28,19 @@ set modeline
 set foldmethod=indent
 set foldlevel=99
 set clipboard=unnamed
+set updatetime=100
+set backupcopy=yes
+set noswapfile
 
-" Enable folding with the spacebar
-nnoremap <space> za
-
-" Manual installation step
-" brew install fzf && $(brew --prefix)/opt/fzf/install
-" brew install the_silver_searcher
-" git clone https://github.com/fatih/vim-go.git ~/.vim/pack/plugins/start/vim-go
-" git clone https://github.com/vim-airline/vim-airline ~/.vim/pack/plugins/start/vim-airline
-" git clone https://github.com/junegunn/fzf.git  ~/.vim/pack/plugins/start/fzf
-" git clone https://github.com/junegunn/fzf.vim.git ~/.vim/pack/plugins/start/vim-fzf
-" git clone https://github.com/preservim/nerdcommenter.git ~/.vim/pack/plugins/start/nerdcommenter
-" git clone https://github.com/preservim/nerdtree.git ~/.vim/pack/plugins/start/nerdtree
-" git clone https://github.com/Xuyuanp/nerdtree-git-plugin.git ~/.vim/pack/plugins/start/nerdtree-git
-" git clone https://github.com/airblade/vim-gitgutter.git ~/.vim/pack/plugins/start/vim-gitgutter
-" git clone https://github.com/rust-lang/rust.vim.git ~/.vim/pack/plugins/start/vim-rust
-" Manual steps:
-" :GoInstallBinaries
-" :helptags ~/.vim/pack/plugins/start/vim-airline/doc
-" vim -u NONE -c 'helptags ~/.vim/pack/vendor/start/nerdtree/doc' -c q
-" vim -u NONE -c 'helptags vim-gitgutter/doc' -c q
-"
 " Plugin configuration
 "ctrlp config
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
-"vim-go config
-let g:go_fmt_command="goimports"
-
 " Fuzzy search
 nnoremap <C-P> :FZF<CR>
 
-"set runtimepath+=~/.vim/bundle/Vundle.vim
-"set runtimepath^=~/.vim/bundle/ctrlp.vim
-"set rtp+=/usr/local/opt/fzf
-"set rtp+=~/.vim/bundle/Vundle.vim
-"call vundle#begin()
-"Plugin 'VundleVim/Vundle.vim'
-"Plugin 'itchyny/lightline.vim'
-"Bundle 'edkolev/tmuxline.vim'
-"Plugin 'tpope/vim-fireplace'
-"Plugin 'guns/vim-clojure-static'
-"Plugin 'bhurlow/vim-parinfer'
-"Plugin 'tpope/vim-fugitive'
-"Plugin 'fatih/vim-go'
-"Plugin 'junegunn/fzf'
-"Plugin 'junegunn/fzf.vim'
-"Plugin 'scrooloose/nerdcommenter'
-"Plugin 'leafgarland/typescript-vim'
-"Plugin 'tpope/vim-markdown'
-"Plugin 'exu/pgsql.vim' 
-"Plugin 'rust-lang/rust.vim'
-"Plugin 'fatih/vim-go'
-"call vundle#end()
-
+" Enable folding with the spacebar
+nnoremap <space> za
 
 " Split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -99,9 +65,22 @@ nnoremap ,pcm :-1read $HOME/.vim/snippets/pcm.sql<CR>2j18li''<esc>h
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType sql setlocal shiftwidth=2 tabstop=2
 autocmd FileType typescript setlocal shiftwidth=2 tabstop=2
-autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+autocmd FileType typescriptreact setlocal shiftwidth=2 tabstop=2
 autocmd FileType make setlocal shiftwidth=4 tabstop=4
 autocmd FileType groovy setlocal shiftwidth=4 tabstop=4
 autocmd FileType xml setlocal shiftwidth=4 tabstop=4
-autocmd FileType java setlocal shiftwidth=4 tabstop=4
+autocmd FileType java setlocal shiftwidth=8 tabstop=8
+autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 :nmap cp :let @+ = expand("%")<CR>
+
+" find any annoying whitespace at end of lines
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+" rusty-tags
+autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/,$RUST_SRC_PATH/rusty-tags.vi
+autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
