@@ -3,8 +3,6 @@
 " Manual installation step
 " brew install fzf && $(brew --prefix)/opt/fzf/install
 " brew install the_silver_searcher
-" Manual steps:
-" :GoInstallBinaries
 "
 scriptencoding utf-8
 syntax on
@@ -71,6 +69,9 @@ autocmd FileType groovy setlocal shiftwidth=4 tabstop=4
 autocmd FileType xml setlocal shiftwidth=4 tabstop=4
 autocmd FileType java setlocal shiftwidth=8 tabstop=8
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
+autocmd FileType cpp setlocal shiftwidth=2 tabstop=2
+autocmd FileType c setlocal shiftwidth=2 tabstop=2
+autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
 :nmap cp :let @+ = expand("%")<CR>
 
 " find any annoying whitespace at end of lines
