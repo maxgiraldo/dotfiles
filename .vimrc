@@ -3,6 +3,8 @@
 " Manual installation step
 " brew install fzf && $(brew --prefix)/opt/fzf/install
 " brew install the_silver_searcher
+" Manual steps:
+" :GoInstallBinaries
 "
 scriptencoding utf-8
 syntax on
@@ -29,6 +31,9 @@ set clipboard=unnamed
 set updatetime=100
 set backupcopy=yes
 set noswapfile
+set timeout ttimeout         " separate mapping and keycode timeouts
+set timeoutlen=500           " mapping timeout 500ms  (adjust for preference)
+set ttimeoutlen=20           " keycode timeout 20ms
 
 " Plugin configuration
 "ctrlp config
@@ -71,7 +76,6 @@ autocmd FileType java setlocal shiftwidth=8 tabstop=8
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 autocmd FileType cpp setlocal shiftwidth=2 tabstop=2
 autocmd FileType c setlocal shiftwidth=2 tabstop=2
-autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
 :nmap cp :let @+ = expand("%")<CR>
 
 " find any annoying whitespace at end of lines
