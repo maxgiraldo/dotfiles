@@ -42,6 +42,11 @@ nnoremap <C-P> :FZF<CR>
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
 
+" shortcut to split pane
+nnoremap <C-V> :vsplit<CR>
+" close pane
+nnoremap <C-C> :close<CR>
+
 let g:NERDTreeWinSize=60
 
 " Enable folding with the spacebar
