@@ -35,10 +35,6 @@ set timeout ttimeout         " separate mapping and keycode timeouts
 set timeoutlen=500           " mapping timeout 500ms  (adjust for preference)
 set ttimeoutlen=20           " keycode timeout 20ms
 
-" Plugin configuration
-"ctrlp config
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
-
 " Fuzzy search
 nnoremap <C-P> :FZF<CR>
 
