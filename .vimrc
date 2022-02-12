@@ -38,6 +38,12 @@ set ttimeoutlen=20           " keycode timeout 20ms
 " Fuzzy search
 nnoremap <C-P> :FZF<CR>
 
+" cycle through buffers
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
+
+let g:NERDTreeWinSize=60
+
 " Enable folding with the spacebar
 nnoremap <space> za
 
