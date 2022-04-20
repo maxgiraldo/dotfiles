@@ -5,19 +5,11 @@
 ###########################################
 
 # Copy files from dotfiles into $HOME
-source_dir="${0:a:h}"
-if [[ ${source_dir} != ${HOME} ]]; then
-  for file in `git -C "${source_dir}" ls-files`; do
-    if [[ "${file}" = "${0:t}" ]]; then
-      continue
-    fi
-    source_path="${source_dir}/${file}"
-    dest_path="${HOME}/${file}"
-    mkdir -p "$(dirname "${dest_path}")"
-    cp "${source_path}" "${dest_path}"
-  done
-fi
+cp .vimrc $HOME/.vimrc
+cp .zshrc $HOME/.zshrc
 
+# Install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Install vim plugins
 sudo apt update
