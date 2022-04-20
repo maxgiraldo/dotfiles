@@ -24,6 +24,7 @@ sudo apt install zsh-completions
 # Install vim plugins
 vim_plugin_dir=$HOME/.vim/pack/plugins/start/
 mkdir -p $vim_plugin_dir
+git clone https://github.com/junegunn/fzf.git $vim_plugin_dir/fzf
 git clone https://github.com/junegunn/fzf.vim.git $vim_plugin_dir/fzf.vim
 git clone https://github.com/preservim/nerdcommenter $vim_plugin_dir/nerdcommenter
 git clone https://github.com/preservim/nerdtree.git $vim_plugin_dir/nerdtree
