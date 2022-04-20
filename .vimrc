@@ -1,11 +1,10 @@
 " Getting started
 "
 " Manual installation step
+" Mac:
 " brew install fzf && $(brew --prefix)/opt/fzf/install
 " brew install the_silver_searcher
-" Manual steps:
-" :GoInstallBinaries
-"
+" brew install zsh-completion
 scriptencoding utf-8
 syntax on
 filetype plugin indent on
@@ -34,9 +33,15 @@ set noswapfile
 set timeout ttimeout         " separate mapping and keycode timeouts
 set timeoutlen=500           " mapping timeout 500ms  (adjust for preference)
 set ttimeoutlen=20           " keycode timeout 20ms
+set modifiable
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
-" Fuzzy search
-nnoremap <C-P> :FZF<CR>
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%73v', 100)
+
+nmap <C-P> :FZF<CR>
+nmap cp :let @+ = expand("%")<CR>
+nnoremap ; :
 
 " cycle through buffers
 nnoremap <Tab> :bnext<CR>
@@ -47,8 +52,6 @@ nnoremap <C-V> :vsplit<CR>
 " close pane
 nnoremap <C-C> :close<CR>
 
-let g:NERDTreeWinSize=60
-
 " Enable folding with the spacebar
 nnoremap <space> za
 
@@ -58,6 +61,13 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" vim-test config
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
+
 " Saner split defaults
 set splitbelow
 set splitright
@@ -65,12 +75,6 @@ set splitright
 if !has('gui_running')
   set t_Co=256
 endif
-
-" Snippets
-nnoremap ,html :-1read $HOME/.vim/.skeleton.html<CR>6jwwwa
-nnoremap ,pc-id :-1read $HOME/.vim/snippets/search_by_pc_product_id.sql<CR>10j23la
-nnoremap ,frame-family :-1read $HOME/.vim/snippets/frame_family.sql<CR>12j5wla
-nnoremap ,pcm :-1read $HOME/.vim/snippets/pcm.sql<CR>2j18li''<esc>h
 
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType sql setlocal shiftwidth=2 tabstop=2
@@ -83,7 +87,8 @@ autocmd FileType java setlocal shiftwidth=8 tabstop=8
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 autocmd FileType cpp setlocal shiftwidth=2 tabstop=2
 autocmd FileType c setlocal shiftwidth=2 tabstop=2
-:nmap cp :let @+ = expand("%")<CR>
+autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
+autocmd FileType markdown setlocal shiftwidth=4 tabstop=4
 
 " find any annoying whitespace at end of lines
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -96,3 +101,5 @@ autocmd BufWinLeave * call clearmatches()
 " rusty-tags
 autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/,$RUST_SRC_PATH/rusty-tags.vi
 autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
+
+let g:NERDTreeWinSize=60
