@@ -35,6 +35,7 @@ set timeoutlen=500           " mapping timeout 500ms  (adjust for preference)
 set ttimeoutlen=20           " keycode timeout 20ms
 set modifiable
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+set tw=72
 
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%73v', 100)
