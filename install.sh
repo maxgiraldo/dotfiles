@@ -11,10 +11,11 @@ cp .zshrc $HOME/.zshrc
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# Install vim plugins
+# Install packages
 sudo apt update
 sudo apt-get --yes install fzf
 sudo apt-get install --yes silversearcher-ag
+sudo apt-get install --yes exuberant-ctags
 
 # zsh-completions script
 echo 'deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-completions/xUbuntu_21.10/ /' | sudo tee /etc/apt/sources.list.d/shells:zsh-users:zsh-completions.list
