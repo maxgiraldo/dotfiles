@@ -106,4 +106,4 @@ eval "$(rbenv init -)"
 eval "$(pyenv init -)"
 
 export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library/
-
+alias gentags="ctags -R --languages=ruby --exclude=.git --exclude=log . $(bundle list --paths)"
