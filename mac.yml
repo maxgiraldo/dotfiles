@@ -1,0 +1,104 @@
+- hosts: localhost
+  tasks:
+    - name: Install homebrew
+      shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    - name: Install homebrew taps
+      community.general.homebrew_tap:
+        name: [
+          heroku/brew,
+          homebrew/cask,
+          homebrew/core,
+          homebrew/services,
+          simple2d/tap
+        ]
+    - name: Install homebrew packages
+      community.general.homebrew:
+        name: [
+          'autoconf',
+          'bdw-gc',
+          'brotli',
+          'c-ares',
+          'ca-certificates',
+          'cmake',
+          'ctags',
+          'flac',
+          'freetype',
+          'fzf',
+          'gcc',
+          'gdbm',
+          'gettext',
+          'giflib',
+          'gmp',
+          'gnupg',
+          'gnutls',
+          'guile',
+          'heroku',
+          'heroku-node',
+          'icu4c',
+          'isl',
+          'jpeg',
+          'krb5',
+          'libassuan',
+          'libevent',
+          'libffi',
+          'libgcrypt',
+          'libgpg-error',
+          'libidn2',
+          'libksba',
+          'libmodplug',
+          'libmpc',
+          'libnghttp2',
+          'libogg',
+          'libpng',
+          'libtasn1',
+          'libtiff',
+          'libtool',
+          'libunistring',
+          'libusb',
+          'libuv',
+          'libvorbis',
+          'm4',
+          'mpfr',
+          'mpg123',
+          'mruby',
+          'nettle',
+          'node',
+          'npth',
+          'openjdk@11',
+          'openssl@1.1',
+          'openssl@3',
+          'p11-kit',
+          'pcre',
+          'pinentry',
+          'pkg-config',
+          'postgresql',
+          'pyenv',
+          'rbenv',
+          'readline',
+          'ruby-build',
+          'rustup-init',
+          'sdl2',
+          'sdl2_image',
+          'sdl2_mixer',
+          'sdl2_ttf',
+          'simple2d',
+          'the_silver_searcher',
+          'unbound',
+          'webp',
+          'xz',
+          'zstd',
+        ]
+    - name: Install Oh My ZSH
+      shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+      args:
+        creates: "/Users/{{ lookup('env', 'USER') }}/.oh-my-zsh"
+
+    - name: Set ZSH as the default shell
+      shell: chsh -s $(which zsh) {{ lookup('env', 'USER') }}
+      become: true
+    - name: Install zsh autosuggestions plugin
+      ansible.builtin.git:
+        repo: https://github.com/zsh-users/zsh-autosuggestions.git
+        dest: ~/.oh-my-zsh/plugins/zsh-autosuggestions
+    - name: Update zshrc
+      shell: sed -i '' 's/(git/(git zsh-autosuggestions/g' ~/.zshrc
