@@ -5,6 +5,7 @@
 " brew install fzf && $(brew --prefix)/opt/fzf/install
 " brew install the_silver_searcher
 " brew install zsh-completion
+" install karabiner elements
 scriptencoding utf-8
 syntax on
 filetype plugin indent on
