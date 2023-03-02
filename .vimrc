@@ -5,7 +5,7 @@
 " brew install fzf && $(brew --prefix)/opt/fzf/install
 " brew install the_silver_searcher
 " brew install zsh-completion
-" install karabiner elements
+" install karabiner elements (caps-lock modification: https://ke-complex-modifications.pqrs.org/#caps_lock)
 scriptencoding utf-8
 syntax on
 filetype plugin indent on
