@@ -5,7 +5,10 @@
 " brew install fzf && $(brew --prefix)/opt/fzf/install
 " brew install the_silver_searcher
 " brew install zsh-completion
-" install karabiner elements (caps-lock modification: https://ke-complex-modifications.pqrs.org/#caps_lock)
+" install karabiner elements
+" packages:
+" https://github.com/junegunn/fzf.git
+" https://github.com/junegunn/fzf.vim
 scriptencoding utf-8
 syntax on
 filetype plugin indent on
@@ -67,8 +70,7 @@ nnoremap <C-H> <C-W><C-H>
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
 nmap <silent> <leader>a :TestSuite<CR>
-nmap <silent> <leader>l :TestLast<CR>
-nmap <silent> <leader>g :TestVisit<CR>
+nmap <silent> <leader>l :TestLast<CR> nmap <silent> <leader>g :TestVisit<CR>
 
 " Saner split defaults
 set splitbelow
@@ -91,6 +93,11 @@ autocmd FileType cpp setlocal shiftwidth=2 tabstop=2
 autocmd FileType c setlocal shiftwidth=2 tabstop=2
 autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
 autocmd FileType markdown setlocal shiftwidth=4 tabstop=4
+autocmd FileType cairo setlocal shiftwidth=4 tabstop=4
+autocmd FileType rs setlocal shiftwidth=4 tabstop=4
+autocmd FileType css setlocal shiftwidth=4 tabstop=4
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+autocmd FileType javascriptreact setlocal shiftwidth=2 tabstop=2
 
 " find any annoying whitespace at end of lines
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -104,4 +111,7 @@ autocmd BufWinLeave * call clearmatches()
 autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/,$RUST_SRC_PATH/rusty-tags.vi
 autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
 
-let g:NERDTreeWinSize=60
+let g:jsx_ext_required = 0
+
+" autoformat json (requires `jq`)
+nmap <silent> <leader>ff :%!jq .<CR>
