@@ -1,4 +1,4 @@
-import config from './.prettierrc.cjs';
+import config from './.prettierrc.mjs';
 
 /** @type {import('eslint').Linter.Config} */
 export default {
