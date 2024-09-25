@@ -1,0 +1,8 @@
+[window]
+option_as_alt = "Both"
+
+[font]
+normal.family = "0xProto Nerd Font Mono"
+bold.family = "0xProto Nerd Font Mono"
+italic.family = "0xProto Nerd Font Mono"
+bold_italic.family = "0xProto Nerd Font Mono"
